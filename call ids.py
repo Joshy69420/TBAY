@@ -18,21 +18,17 @@ conn = sqlite3.connect("tbay.db")
 cursor = conn.cursor()
 
 # Create a table for leagues
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS leagues (
-        id INTEGER PRIMARY KEY,
-        name TEXT
-    )
-""")
+cursor.execute(""" CREATE TABLE IF NOT EXISTS leagues (id INTEGER PRIMARY KEY,name TEXT,country TEXT)""")
 
-# Insert league IDs and names into the table
+# Insert league IDs names and countries into the table
 for league in data["response"]:
     league_id = league["league"]["id"]
     league_name = league["league"]["name"]
-    cursor.execute("INSERT OR IGNORE INTO leagues (id, name) VALUES (?, ?)", (league_id, league_name))
+    league_country= league["country"]["name"]
+    cursor.execute("INSERT OR IGNORE INTO leagues (id, name,country) VALUES (?, ?,?)", (league_id, league_name,league_country,))
 
 # Commit changes and close the connection
 conn.commit()
 conn.close()
 
-print("League IDs saved to leagues.db")
+print("League info saved to tbay ")
