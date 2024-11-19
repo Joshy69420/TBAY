@@ -6,7 +6,7 @@ user_league=input("enter a league")
 connection= sqlite3.connect("leagues.db")
 
 cursor=connection.cursor()
-
+#sigma
 query=  "SELECT id FROM leagues WHERE name ='cup' "
 cursor.execute(query)
 columns=cursor.fetchall()
