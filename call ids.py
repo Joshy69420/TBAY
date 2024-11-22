@@ -13,7 +13,7 @@ url = "https://v3.football.api-sports.io/leagues"
 response = requests.get(url, headers=headers)
 data = response.json()
 
-# Connect to SQLite database (or create it if it doesn"t exist)
+# Connect to SQLite database (or create it if it doesn't exist)
 conn = sqlite3.connect("tbay.db")
 cursor = conn.cursor()
 
