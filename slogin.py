@@ -1,4 +1,4 @@
-#import all the necassry libraries 
+#import all the necessary libraries 
 import csv
 import hashlib
 import smtplib
@@ -77,7 +77,7 @@ if login_or_sign== ("sign up"):
             print("username already in use")
             sign_up=True
         elif email_validility(new_email)==True:
-            print("email alredy in use please login") 
+            print("email already in use please login") 
             sign_up=True
         elif true==True:
             password=input("enter a password")

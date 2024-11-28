@@ -2,7 +2,7 @@ import requests
 import sqlite3
 user_league=input("enter a league")
 user_country=input("enter a country")
-# define connection to league table and create cursor
+# define connection to tbay database and create cursor
 connection= sqlite3.connect("tbay.db")
 
 cursor=connection.cursor()
