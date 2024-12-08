@@ -4,7 +4,6 @@ import hashlib
 import smtplib
 from email.mime.text import MIMEText
 from random import randint
-true=True
 # check if the username is in the csv file
 def username_validility(username):
     with open("usernames.csv",newline="") as database:
@@ -79,7 +78,7 @@ if login_or_sign== ("sign up"):
         elif email_validility(new_email)==True:
             print("email already in use please login") 
             sign_up=True
-        elif true==True:
+        else:
             password=input("enter a password")
             verify_email(new_email,verification_code)
             users_code=input ("enter your verification code")
@@ -88,7 +87,7 @@ if login_or_sign== ("sign up"):
             byteVar= password.encode()
             hashed_password=(hashlib.sha256(byteVar).hexdigest())
             write_username_password(new_user_name,hashed_password,new_email )
-        elif int(users_code) != verification_code:
+        if int(users_code) != verification_code:
             print("invalid verification code")
             sign_up=True
 
