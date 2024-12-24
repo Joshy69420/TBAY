@@ -11,7 +11,7 @@ def username_validility(username):
         for row in reader:
             if row[0] == username:
                 return True
-        return False
+            else: return False
 def email_validility(email):
     with open("usernames.csv",newline="") as database:
         reader= csv.reader(database)
@@ -63,11 +63,11 @@ def verify_email(email,code):
 
 
 
-#gets the user to login or sign up untill sucessful 
+#gets the user to login or sign up until successful 
 sign_up=True
-login_or_sign=input("login or sign up")
-if login_or_sign== ("sign up"):
-    while sign_up==True:
+while sign_up==True:
+    login_or_sign=input("login or sign up")
+    if login_or_sign== ("sign up"):
         sign_up=False
         new_user_name=input("enter a user name")
         new_email= input (" enter your email")
@@ -82,24 +82,25 @@ if login_or_sign== ("sign up"):
             password=input("enter a password")
             verify_email(new_email,verification_code)
             users_code=input ("enter your verification code")
-            int(users_code)
+            
 
+            if int(users_code) == verification_code: 
+                byteVar= password.encode()
+                hashed_password=(hashlib.sha256(byteVar).hexdigest())
+                write_username_password(new_user_name,hashed_password,new_email )
+            elif int(users_code) != verification_code:
+                print("invalid verification code")
+                sign_up=True
+
+    elif login_or_sign==("login"):
+        user_name=input("enter a username")
+        if username_validility(user_name)==True:
+            password=input("enter your password")
+            user_email= input("enter your email")
             byteVar= password.encode()
             hashed_password=(hashlib.sha256(byteVar).hexdigest())
-            write_username_password(new_user_name,hashed_password,new_email )
-        if int(users_code) != verification_code:
-            print("invalid verification code")
-            sign_up=True
-
-elif login_or_sign==("login"):
-    user_name=input("enter a username")
-    if username_validility(user_name)==True:
-        password=input("enter your password")
-        user_email= input("enter your email")
-        byteVar= password.encode()
-        hashed_password=(hashlib.sha256(byteVar).hexdigest())
-    if correct_password_email(user_name,hashed_password,user_email)==True:
-        print("logged in")
+        if correct_password_email(user_name,hashed_password,user_email)==True:
+            print("logged in")
 
 
     
