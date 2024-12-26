@@ -68,8 +68,8 @@ window.onclick = function(event) {
 <div class="dropdown">
     <button onclick="myFunction()" class="dropbtn">Dropdown</button>
     <div id="myDropdown" class="dropdown-content">
-      <a href="#">sigma</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      {%for league in leagues_list%}
+        <a href="/league_{{ league }}">{{ league }}</a>
+      {%endfor%}
     </div>
   </div>

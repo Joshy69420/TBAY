@@ -39,12 +39,12 @@ def verify_email(email,code):
     receiver_email = email
     subject = "verification code for tbay"
     body = (code_string)
-
+#create the contents of the email
     msg = MIMEText(body)
     msg["subject"]= subject
     msg["from"]= sender_email
     msg["To"]= receiver_email
-    
+#establish the connection to the server 
     smtp_server = "smtp.gmail.com"
     port = 587
     password = "kyog qtse wcqp vcxy "
@@ -55,7 +55,6 @@ def verify_email(email,code):
     server.login(sender_email, password)
 
     server.sendmail(sender_email, receiver_email, msg.as_string())
-
 
     server.quit()
 
@@ -83,7 +82,6 @@ while sign_up==True:
             verify_email(new_email,verification_code)
             users_code=input ("enter your verification code")
             
-
             if int(users_code) == verification_code: 
                 byteVar= password.encode()
                 hashed_password=(hashlib.sha256(byteVar).hexdigest())
@@ -94,11 +92,10 @@ while sign_up==True:
 
     elif login_or_sign==("login"):
         user_name=input("enter a username")
-        if username_validility(user_name)==True:
-            password=input("enter your password")
-            user_email= input("enter your email")
-            byteVar= password.encode()
-            hashed_password=(hashlib.sha256(byteVar).hexdigest())
+        password=input("enter your password")
+        user_email= input("enter your email")
+        byteVar= password.encode()
+        hashed_password=(hashlib.sha256(byteVar).hexdigest())
         if correct_password_email(user_name,hashed_password,user_email)==True:
             print("logged in")
 
