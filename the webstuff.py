@@ -2,9 +2,7 @@
 from flask import Flask , render_template 
 import sqlite3
 import requests
-leagues_list=[]
 index=0
-country_list=[]
 global cursor
 
 #retrieve leagues 
@@ -25,7 +23,7 @@ def get_id(league_name):
 #create subroutine to get all teams fom that league
 def get_teams(league_id):
     headers = { "x-apisports-key": "6732a3d212744481c28f836db783c293"}
-    url = "https://v3.football.api-sports.io/{{league_id}}&season={2022}"
+    url = "https://v3.football.api-sports.io/{{league_id}}&season={202"
     response = requests.get(url, headers=headers)
     data = response.json()
     print(data)
